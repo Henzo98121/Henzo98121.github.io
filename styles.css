@@ -4,16 +4,25 @@
     box-sizing: border-box;
 }
 
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+}
+
 body {
     font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #000;
     color: #fff;
     perspective: 1000px;
-    overflow-x: hidden;
+    position: fixed;
+    touch-action: none;
+    -ms-touch-action: none;
 }
 
 /* Particles Background */
@@ -57,12 +66,11 @@ body {
 
 .container {
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 1rem;
-    background: url('https://images2.alphacoders.com/132/1325881.jpeg') center/cover no-repeat;
     position: relative;
     z-index: 2;
 }
@@ -79,8 +87,7 @@ body {
 }
 
 .card {
-    width: 100%;
-    max-width: 400px;
+    width: min(400px, 90vw);
     background: rgba(24, 24, 27, 0.8);
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -110,8 +117,8 @@ body {
 }
 
 .profile-image {
-    width: 120px;
-    height: 120px;
+    width: min(120px, 30vw);
+    height: min(120px, 30vw);
     border-radius: 50%;
     overflow: hidden;
     border: 3px solid rgba(255, 255, 255, 0.2);
@@ -124,8 +131,8 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 140px;
-    height: 140px;
+    width: min(140px, 35vw);
+    height: min(140px, 35vw);
     background: radial-gradient(circle at center, rgba(255,255,255,0.8) 0%, transparent 70%);
     opacity: 0;
     transition: opacity 0.3s ease;
@@ -148,7 +155,7 @@ body {
 }
 
 .username {
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 5vw, 2rem);
     font-weight: 600;
     letter-spacing: 0.05em;
     transform: translateZ(20px);
@@ -162,6 +169,7 @@ body {
     font-weight: 500;
     min-height: 1.5em;
     transform: translateZ(15px);
+    font-size: clamp(0.875rem, 3vw, 1rem);
 }
 
 .cursor {
@@ -222,8 +230,14 @@ body {
 }
 
 .social-link svg {
-    width: 1.8rem;
-    height: 1.8rem;
+    width: clamp(1.5rem, 4vw, 1.8rem);
+    height: clamp(1.5rem, 4vw, 1.8rem);
     fill: currentColor;
 }
 
+@media (max-width: 480px) {
+    .card-content {
+        padding: 1.5rem;
+        gap: 1rem;
+    }
+}
